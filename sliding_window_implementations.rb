@@ -11,13 +11,38 @@ def max_sum(array, k)
   i = 0
   current_sum = 0 
   maximum = Integer::MIN
+
   while (i < array.length) do 
     current_sum += array[i]
+
     if i >= (k-1)
       maximum = [maximum, current_sum].max
       current_sum -= array[i - (k-1)]
     end
+
     i += 1
   end 
   puts maximum
+end 
+
+# sliding window with variable length 
+# example find the smallest subarray where the sum is greater or equal to eight 
+def find_length(array, target_sum)
+  i = 0
+  j = 0
+  current_sum = 0
+  len = Integer::MAX
+
+  while (j < array.length) do 
+    current_sum += array[j]
+
+    while (current_sum >= target_sum) do 
+      len = [len, (j - i + 1)].min
+      current_sum -= array[i]
+      i += 1
+    end 
+
+    j += 1
+  end 
+  puts len
 end 
