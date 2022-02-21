@@ -46,3 +46,35 @@ def find_length(array, target_sum)
   end 
   puts len
 end 
+
+
+# sliding window with an auxillary data structure 
+# example largest substring with k distinct characters 
+def find_uniq(array, k)
+  char_dict = {array[0] => 1}
+  i = 0
+  j = 0
+  len = Integer::MIN
+  current_len = 0
+
+  while (j < array.length) do 
+    while (char_dict.length <= k) do 
+      len = [len, (j - i + 1)].max
+      j += 1
+      if char_dict[array[j]]
+        char_dict[array[j]] += 1
+      else 
+        char_dict[array[j]] = 1
+      end 
+    end 
+
+    if char_dict[array[i]] == 1
+      array.delete(array[i])
+    else 
+      char_dict[array[i]] -= 1
+    end 
+
+    i += 1
+  end 
+  puts len
+end 
