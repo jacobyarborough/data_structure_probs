@@ -1,3 +1,4 @@
+require 'pry'
 def binary_search(sorted_array, search_value)
   start_index = 0
   end_index = sorted_array.length - 1
